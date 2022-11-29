@@ -134,8 +134,16 @@ double[] GetArrayDouble(int size, int min, int max)
     double[] array = new double[size];
     for (int i = 0; i < size; i++)
     {
-        var random = new Random();
-        array[i] = random.Next(min, max + 1) + Math.Round(random.NextDouble(), 2);
+        //вариант 1
+        //var random = new Random();
+        //array[i] =  Math.Round(Convert.ToDouble(random.Next(min*100, max*100 + 1)/100.0),2);
+        
+        //вариант 2
+        //var random = new Random();
+        //array[i] = random.Next(min, max + 1) + Math.Round(random.NextDouble(), 2);
+        
+        //вариант 3 - 
+        array[i] =(new Random().Next(min, max + 1)) +  (Math.Round( new Random().NextDouble(),2));
     }
     return array;
 }
@@ -186,11 +194,11 @@ try
     double maxEl = GetMaxInArray(Array);
     double minEl = GetMinInArray(Array);
     double razn = maxEl - minEl;
-    WriteLine($"Максимальный элемент: {maxEl}\r\nМинимальный элемент: {minEl}\r\nРазницв максимального и минимального элементов: {razn}");
+    WriteLine($"Максимальный элемент: {maxEl}\r\nМинимальный элемент: {minEl}\r\nРазницв максимального и минимального элементов: {razn:f2}");
 
     WriteLine("Вариант 2");
     double[] minMaxEl = GetMinMaxInArray(Array);
-    WriteLine($"Максимальный элемент: {minMaxEl[1]}\r\nМинимальный элемент: {minMaxEl[0]}\r\nРазницв максимального и минимального элементов: {minMaxEl[1]-minMaxEl[0]}");
+    WriteLine($"Максимальный элемент: {minMaxEl[1]}\r\nМинимальный элемент: {minMaxEl[0]}\r\nРазницв максимального и минимального элементов: {(minMaxEl[1]-minMaxEl[0]):f2}");
     
 }
 catch (OverflowException)
